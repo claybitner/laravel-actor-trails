@@ -4,7 +4,6 @@ namespace DigitalIndoorsmen\LaravelActorTrails\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Str;
 
 class LaravelActorTrailsCommand extends Command
 {
@@ -15,7 +14,7 @@ class LaravelActorTrailsCommand extends Command
     public function handle(): int
     {
         $table = $this->argument('table');
-        $filesystem = new Filesystem();
+        $filesystem = new Filesystem;
 
         // Migration filename
         $timestamp = date('Y_m_d_His');
@@ -23,10 +22,11 @@ class LaravelActorTrailsCommand extends Command
         $path = database_path("migrations/{$fileName}");
 
         // Stub path
-        $stubPath = __DIR__ . '/../../database/migrations/add_actor_trails_columns.php.stub';
+        $stubPath = __DIR__.'/../../database/migrations/add_actor_trails_columns.php.stub';
 
-        if (!$filesystem->exists($stubPath)) {
+        if (! $filesystem->exists($stubPath)) {
             $this->error("Migration stub not found at: {$stubPath}");
+
             return self::FAILURE;
         }
 

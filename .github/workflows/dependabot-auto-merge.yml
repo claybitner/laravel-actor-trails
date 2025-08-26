@@ -1,4 +1,5 @@
-name: dependabot-auto-merge
+name: Dependabot Auto-Merge
+
 on: pull_request_target
 
 permissions:
@@ -8,26 +9,22 @@ permissions:
 jobs:
   dependabot:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
     if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
-
       - name: Dependabot metadata
         id: metadata
-        uses: dependabot/fetch-metadata@v2.4.0
-        with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
+        uses: dependabot/fetch-metadata@v2
 
-      - name: Auto-merge Dependabot PRs for semver-minor updates
-        if: ${{steps.metadata.outputs.update-type == 'version-update:semver-minor'}}
+      - name: Auto-merge semver-minor updates
+        if: ${{ steps.metadata.outputs.update-type == 'version-update:semver-minor' }}
         run: gh pr merge --auto --merge "$PR_URL"
         env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Auto-merge Dependabot PRs for semver-patch updates
-        if: ${{steps.metadata.outputs.update-type == 'version-update:semver-patch'}}
+      - name: Auto-merge semver-patch updates
+        if: ${{ steps.metadata.outputs.update-type == 'version-update:semver-patch' }}
         run: gh pr merge --auto --merge "$PR_URL"
         env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,11 +1,11 @@
 <?php
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use DigitalIndoorsmen\LaravelActorTrails\Traits\HasActorTrails;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
-use DigitalIndoorsmen\LaravelActorTrails\Traits\HasActorTrails;
 
 beforeEach(function () {
     // Create a test users table
@@ -38,6 +38,7 @@ afterEach(function () {
 class TestUser extends Authenticatable
 {
     protected $table = 'users';
+
     protected $guarded = [];
 }
 
@@ -47,7 +48,9 @@ class TestPost extends Model
     use HasActorTrails, \Illuminate\Database\Eloquent\SoftDeletes;
 
     protected $table = 'posts';
+
     protected $guarded = [];
+
     protected $casts = [
         'created_by' => 'array',
         'modified_by' => 'array',

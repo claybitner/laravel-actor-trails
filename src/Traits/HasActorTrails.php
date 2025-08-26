@@ -18,7 +18,7 @@ trait HasActorTrails
 
         static::deleting(function ($model) {
             // Always set deleted_by, regardless of SoftDeletes
-            if (method_exists($model, 'isForceDeleting') && !$model->isForceDeleting()) {
+            if (method_exists($model, 'isForceDeleting') && ! $model->isForceDeleting()) {
                 // Soft delete case
                 $model->deleted_by = ActorResolver::resolve();
                 $model->saveQuietly();

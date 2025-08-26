@@ -2,9 +2,9 @@
 
 namespace DigitalIndoorsmen\LaravelActorTrails\Tests;
 
+use DigitalIndoorsmen\LaravelActorTrails\LaravelActorTrailsServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use DigitalIndoorsmen\LaravelActorTrails\LaravelActorTrailsServiceProvider;
 
 class TestCase extends Orchestra
 {

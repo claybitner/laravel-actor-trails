@@ -9,14 +9,12 @@ class ActorResolver
     /**
      * Resolve the current authenticated actor into an array
      * based on the configured attributes.
-     *
-     * @return array|null
      */
     public static function resolve(): ?array
     {
         $user = Auth::user();
 
-        if (!$user) {
+        if (! $user) {
             return null;
         }
 

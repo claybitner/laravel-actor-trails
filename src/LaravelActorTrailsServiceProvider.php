@@ -2,9 +2,9 @@
 
 namespace DigitalIndoorsmen\LaravelActorTrails;
 
+use DigitalIndoorsmen\LaravelActorTrails\Commands\LaravelActorTrailsCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use DigitalIndoorsmen\LaravelActorTrails\Commands\LaravelActorTrailsCommand;
 
 class LaravelActorTrailsServiceProvider extends PackageServiceProvider
 {
