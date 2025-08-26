@@ -1,0 +1,23 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration {
+    public function up(): void
+    {
+        Schema::table('TABLE_NAME_HERE', function (Blueprint $table) {
+            $table->json('created_by')->nullable();
+            $table->json('modified_by')->nullable();
+            $table->json('deleted_by')->nullable();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::table('TABLE_NAME_HERE', function (Blueprint $table) {
+            $table->dropColumn(['created_by', 'modified_by', 'deleted_by']);
+        });
+    }
+};
