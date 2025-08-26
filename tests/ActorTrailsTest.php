@@ -64,8 +64,8 @@ it('stores created_by when creating a model', function () {
 
     $post = TestPost::create(['title' => 'Hello World']);
 
-    expect($post->created_by)
-        ->toBeArray()
+    expect($post->created_by)->not->toBeNull()
+        ->and($post->created_by)->toBeArray()
         ->and($post->created_by['id'])->toEqual($user->id)
         ->and($post->created_by['display_name'])->toEqual('Alice');
 });
